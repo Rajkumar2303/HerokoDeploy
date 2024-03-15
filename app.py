@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 from PIL import Image
 from io import BytesIO
 import joblib
-import cv2
+
 
 from keras.preprocessing import image as keras_image
 
