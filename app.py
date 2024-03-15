@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from PIL import Image
 from io import BytesIO
 import joblib
+import cv2
 
 from keras.preprocessing import image as keras_image
 
@@ -13,7 +14,7 @@ app = Flask(__name__)
 model = joblib.load('BrainAnamolies.pkl')
 
 # Define the label encoder or preprocessing steps if needed
-label = {0: 'Brain Tumor', 1: 'NORMAL', 2: 'Stroke', 3: 'azhzeimer'}
+label = {0: 'Brain Tumor', 1: 'NORMAL', 2: 'Stroke', 3: 'alzhzeimer'}
 
 
 
@@ -33,14 +34,16 @@ def predict():
                     # Read the image from the response content
                     img = Image.open(BytesIO(response.content))
                     # Preprocess the image
-                    img = img.resize((256, 256))
-                    img_array = keras_image.img_to_array(img)
-                    img_array = np.expand_dims(img_array, axis=0)
-                    img_array = img_array / 255.0  # Normalize the image
+                    img = img.resize((224, 224))
+
+                    image = img.reshape(1, 224, 224, 3)
+
+                    
+                    # Normalize the image
                    
                    
                     # Make prediction using the model
-                    prediction = model.predict(img_array)
+                    prediction = model.predict(img)
 
                     # Convert NumPy array to Python list
                     prediction_list = prediction.tolist()
