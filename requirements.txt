@@ -5,5 +5,6 @@ scikit-learn
 seaborn
 opencv-python-headless
 gunicorn
+joblib==1.2.0
 
 
