@@ -46,7 +46,7 @@ def predict():
                     prediction = model.predict(img)
 
                     # Convert NumPy array to Python list
-                    prediction_list = prediction.tolist()
+                    prediction_list = np.array(prediction)
                     # Determine the predicted class
                     predicted_class = label[np.argmax(prediction_list)]
 
