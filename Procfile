@@ -1,1 +1,1 @@
-web: gunicorn app:app --tensorflow-model-path=model_resnet50.h5
+web: gunicorn app:app
