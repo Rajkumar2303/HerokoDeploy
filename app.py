@@ -32,12 +32,10 @@ app = Flask(__name__)
 MODEL_PATH ='model_resnet50.h5'
 
 # Load your trained model
-#model = load_model(MODEL_PATH)
 
-try:
-    model = load_model(MODEL_PATH)
-except Exception as e:
-    print("Error loading the model:", str(e))
+
+model = load_model(MODEL_PATH)
+
 
 
 def model_predict(img_path, model):
