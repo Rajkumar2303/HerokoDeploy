@@ -32,6 +32,7 @@ import tensorflow as tf
 
 # Define a flask app
 app = Flask(__name__)
+MODEL_PATH ='model_resnet50.h5'
 
 def load_model():
     try:
