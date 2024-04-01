@@ -36,7 +36,7 @@ MODEL_PATH ='model_resnet50.h5'
 
 def load_model():
     try:
-        model = tf.keras.models.load_model(MODEL_PATH)
+        model = tf.keras.models.load_model('model_resnet50.h5')
         return model
     except Exception as e:
         print("Error loading the model:", str(e))
