@@ -32,9 +32,12 @@ app = Flask(__name__)
 MODEL_PATH ='BrainAnomalies01.h5'
 
 # Load your trained model
-model = load_model(MODEL_PATH)
+#model = load_model(MODEL_PATH)
 
-
+try:
+    model = load_model(MODEL_PATH)
+except Exception as e:
+    print("Error loading the model:", str(e))
 
 
 def model_predict(img_path, model):
