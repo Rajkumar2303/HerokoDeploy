@@ -43,7 +43,8 @@ def load_model():
         return None
 
 model = load_model()'''
-model = tf.keras.models.load_model('model_resnet50.h5')
+#model = tf.keras.models.load_model('model_resnet50.h5')
+model = tf.keras.models.load_model('/app/model_resnet50.h5')
 
 def model_predict(img_path, model):
     img = image.load_img(img_path, target_size=(224, 224))
