@@ -6,7 +6,6 @@ Created on Mon Apr  1 02:04:55 2024
 """
 
 
-
 from __future__ import division, print_function
 # coding=utf-8
 import sys
@@ -25,17 +24,24 @@ from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
 #from gevent.pywsgi import WSGIServer
 
+
+from PIL import Image
+
+import tensorflow as tf
+
+
 # Define a flask app
 app = Flask(__name__)
 
-# Model saved with Keras model.save()
-MODEL_PATH ='model_resnet50.h5'
+def load_model():
+    try:
+        model = tf.keras.models.load_model(MODEL_PATH)
+        return model
+    except Exception as e:
+        print("Error loading the model:", str(e))
+        return None
 
-# Load your trained model
-
-
-model = load_model(MODEL_PATH)
-
+model = load_model()
 
 
 def model_predict(img_path, model):
@@ -47,9 +53,6 @@ def model_predict(img_path, model):
     ## Scaling
     x=x/255
     x = np.expand_dims(x, axis=0)
-   
-
-   
 
     preds = model.predict(x)
     preds=np.argmax(preds, axis=1)
