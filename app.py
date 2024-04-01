@@ -32,7 +32,7 @@ import tensorflow as tf
 
 # Define a flask app
 app = Flask(__name__)
-MODEL_PATH ='model_resnet50.h5'
+'''MODEL_PATH ='model_resnet50.h5'
 
 def load_model():
     try:
@@ -42,8 +42,8 @@ def load_model():
         print("Error loading the model:", str(e))
         return None
 
-model = load_model()
-
+model = load_model()'''
+model = tf.keras.models.load_model('model_resnet50.h5')
 
 def model_predict(img_path, model):
     img = image.load_img(img_path, target_size=(224, 224))
