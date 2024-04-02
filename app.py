@@ -26,7 +26,6 @@ from werkzeug.utils import secure_filename
 #from gevent.pywsgi import WSGIServer
 
 
-from PIL import Image
 
 import tensorflow as tf
 
@@ -37,24 +36,10 @@ app = Flask(__name__)
 # Load your trained model
 
 MODEL_PATH ='newmodel.h5'
-
+model = tf.keras.models.load_model(MODEL_PATH)
  
 
-def load_model():
 
-    try:
-
-        model = tf.keras.models.load_model(MODEL_PATH)
-
-        return model
-
-    except Exception as e:
-
-        print("Error loading the model:", str(e))
-
-        return None
-
-model = load_model()
 # Model saved with Keras model.save()
 '''MODEL_PATH ='model_resnet50.h5'
 
