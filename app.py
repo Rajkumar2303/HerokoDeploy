@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+s# -*- coding: utf-8 -*-
 """
 Created on Mon Apr  1 02:04:55 2024
 
@@ -35,23 +35,9 @@ app = Flask(__name__)
 
 # Load your trained model
 
-MODEL_PATH ='newmodel.h5'
-model = tf.keras.models.load_model(MODEL_PATH)
+
+model = tf.keras.models.load_model('newmodel.keras')
  
-
-
-# Model saved with Keras model.save()
-'''MODEL_PATH ='model_resnet50.h5'
-
-# Load your trained model
-
-try:
-    model = load_model(MODEL_PATH)
-except Exception as e:
-    print("Error loading the model:", str(e))
-#model = load_model(MODEL_PATH)
-'''
-
 
 
 def model_predict(img_path, model):
