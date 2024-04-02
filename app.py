@@ -1,14 +1,7 @@
-s# -*- coding: utf-8 -*-
-"""
-Created on Mon Apr  1 02:04:55 2024
-
-@author: rajku
-"""
 
 
 
 from __future__ import division, print_function
-# coding=utf-8
 
 import os
 
@@ -23,7 +16,7 @@ from tensorflow.keras.preprocessing import image
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
-#from gevent.pywsgi import WSGIServer
+
 
 
 
