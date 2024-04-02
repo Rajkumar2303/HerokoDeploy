@@ -37,35 +37,9 @@ app = Flask(__name__)
 # Load your trained model
 
 #MODEL_PATH ='newmodel.keras' 
-img = image.load_img('testA.jpg', target_size=(224, 224))
-#model = pickle.load(open('newmodel.sav', 'rb'))
+#img = image.load_img('testA.jpg', target_size=(224, 224))
+model = pickle.load(open('newmodelMN.sav', 'rb'))
 
-'''def load_model():
-
-    try:
-
-#        model = tf.keras.models.load_model(MODEL_PATH)
-        model = pickle.load(open('newmodel.sav', 'rb'))
-        return model
-
-    except Exception as e:
-
-        print("Error loading the model:", str(e))
-
-        return None
-
-model = load_model()'''
-# Model saved with Keras model.save()
-'''MODEL_PATH ='model_resnet50.h5'
-
-# Load your trained model
-
-try:
-    model = load_model(MODEL_PATH)
-except Exception as e:
-    print("Error loading the model:", str(e))
-#model = load_model(MODEL_PATH)
-'''
 
 
 
@@ -116,8 +90,8 @@ def upload():
         f.save(file_path)
 
         # Make prediction
-        #preds = model_predict(file_path, model)
-        preds='Brain'
+        preds = model_predict(file_path, model)
+        #preds='Brain'
         result=preds
         return result
     return None
