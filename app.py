@@ -37,8 +37,8 @@ app = Flask(__name__)
 # Load your trained model
 
 #MODEL_PATH ='newmodel.keras' 
-
-model = pickle.load(open('newmodel.sav', 'rb'))
+img = image.load_img('testA.jpg', target_size=(224, 224))
+#model = pickle.load(open('newmodel.sav', 'rb'))
 
 '''def load_model():
 
@@ -116,7 +116,8 @@ def upload():
         f.save(file_path)
 
         # Make prediction
-        preds = model_predict(file_path, model)
+        #preds = model_predict(file_path, model)
+        preds='Brain'
         result=preds
         return result
     return None
