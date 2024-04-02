@@ -38,8 +38,8 @@ app = Flask(__name__)
 
 #MODEL_PATH ='newmodel.keras' 
 #img = image.load_img('testA.jpg', target_size=(224, 224))
-model = pickle.load(open('newmodelMN.sav', 'rb'))
-
+#model = pickle.load(open('newmodelMN.sav', 'rb'))
+model=tf.keras.models.load_model('newmodelMN.h5')
 
 
 
