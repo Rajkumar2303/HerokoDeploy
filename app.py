@@ -64,7 +64,7 @@ def model_predict(img_path, model):
     preds = model.predict(x)
     preds=np.argmax(preds, axis=1)
     if preds==0:
-        preds="BrainYumour"
+        preds="Braintumour"
     elif preds==1:
         preds="Normal"
     elif preds==2:
