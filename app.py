@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Tue Apr  2 13:54:32 2024
+
+@author: rajku
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Mon Apr  1 02:04:55 2024
 
 @author: rajku
@@ -21,7 +28,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 
 # Flask utils
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 #from gevent.pywsgi import WSGIServer
 
@@ -36,10 +43,8 @@ app = Flask(__name__)
 
 # Load your trained model
 
-#MODEL_PATH ='newmodel.keras' 
-#img = image.load_img('testA.jpg', target_size=(224, 224))
-#model = pickle.load(open('newmodelMN.sav', 'rb'))
-model=tf.keras.models.load_model('newmodelMN.h5')
+model = tf.keras.models.load_model('newmodelMN.h5')
+
 
 
 
@@ -99,3 +104,6 @@ def upload():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
