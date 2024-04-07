@@ -29,17 +29,25 @@ def predict():
             if image_url:
                 # Fetch the image from the URL
                 response = requests.get(image_url)
+                
                 if response.status_code == 200:
                     # Read the image from the response content
                     img = Image.open(BytesIO(response.content))
                     # Preprocess the image
-                    img = img.resize((224, 224))
+                    img_gray = img.resize((224, 224))
+                    img=img_gray.convert('RGB')
+                    
+                    
                     img_array = keras_image.img_to_array(img)
+                    
                     img_array = np.expand_dims(img_array, axis=0)
-                    img_array = img_array / 255.0  # Normalize the image
+                    img_array = img_array / 255.0 
+
+                    # Normalize the image
                     
 
                     prediction = model.predict(img_array)[0]
+                    print(prediction)
                     # Convert NumPy array to Python list
                     prediction_list = prediction.tolist()
                     # Determine the predicted class
