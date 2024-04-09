@@ -5,6 +5,11 @@ from PIL import Image
 from io import BytesIO
 from keras.preprocessing import image as keras_image
 import tensorflow as tf
+import pandas as pd
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+
+
 app = Flask(__name__)
 
 # Load the LightGBM model
@@ -31,27 +36,34 @@ def predict():
                 response = requests.get(image_url)
                 
                 if response.status_code == 200:
+                    print('Image Received')
                     # Read the image from the response content
                     img = Image.open(BytesIO(response.content))
                     # Preprocess the image
                     img_gray = img.resize((224, 224))
                     img=img_gray.convert('RGB')
+                    print('Image converted to RGB')
+
                     
                     
                     img_array = keras_image.img_to_array(img)
-                    
+                    print(img_array.shape)
                     img_array = np.expand_dims(img_array, axis=0)
                     img_array = img_array / 255.0 
+                    tes_df = pd.DataFrame({'image_data': [img_array]})
+                    tes_datagen = ImageDataGenerator()
+                    img_data_array = np.array([tes_df['image_data'][0]])
+                    img_data_array = np.squeeze(img_data_array, axis=1)
+                    print(img_data_array.shape)
+                    tes_gen = tes_datagen.flow(img_data_array, shuffle=False, batch_size=1)
+                    print('tes_gen')
+                    y_pred = model.predict(tes_gen)
 
-                    # Normalize the image
-                    
-
-                    prediction = model.predict(img_array)[0]
-                    print(prediction)
-                    # Convert NumPy array to Python list
-                    prediction_list = prediction.tolist()
+                    print('model Predicted')
+                    ind = int(np.argmax(y_pred, axis=1))
+                        
                     # Determine the predicted class
-                    predicted_class = label[np.argmax(prediction_list)]
+                    predicted_class = label[ind]
 
                     # Return the prediction result as JSON
                     return jsonify({'predicted_Disease': predicted_class})
